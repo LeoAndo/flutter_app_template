@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -15,6 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Logger().d(const String.fromEnvironment('flavor'));
+    Logger().d(const String.fromEnvironment('flutterAppName'));
+    Logger().d(const String.fromEnvironment('flutterApplicationIdSuffix'));
+    Logger().d(const String.fromEnvironment('accessToken'));
+    Logger().d(const String.fromEnvironment('apiDomain'));
   }
 
   @override

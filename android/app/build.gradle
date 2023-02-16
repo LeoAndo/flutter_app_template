@@ -51,6 +51,11 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // applicationIdSuffix に {環境}.json で定義した flutterApplicationIdSuffix を指定
+        // 注意点は、gradleの変数名(applicationIdSuffix)と  {環境}.json で定義した変数名が同じだと設定が反映されないので注意！
+        applicationIdSuffix flutterApplicationIdSuffix
+        // string/app_nameを作成し、{環境}.json で定義した flutterAppName を指定
+        resValue "string", "app_name", flutterAppName
     }
 
     buildTypes {
