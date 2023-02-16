@@ -159,7 +159,6 @@
 				1DD280C14EAC31EE97553D74 /* Pods-Runner.release.xcconfig */,
 				61DD4AD397FCC7C812C724C1 /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -427,7 +426,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo2.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -554,7 +553,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo2.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -575,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.leoleo2.template.flutterAppTemplate$(flutterApplicationIdSuffix)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
