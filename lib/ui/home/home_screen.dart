@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _initPackageInfo();
-    Logger().d('===============env variable info===============');
     Logger().d(const String.fromEnvironment('flavor'));
     Logger().d(const String.fromEnvironment('flutterAppName'));
     Logger().d(const String.fromEnvironment('flutterApplicationIdSuffix'));
@@ -35,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _initPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
-    Logger().d('===============package info===============');
     Logger().d(info.packageName);
     Logger().d(info.version);
     Logger().d(info.buildNumber);
