@@ -1,0 +1,7 @@
+{
+    "flavor": "production",
+    "flutterAppName": "App",
+    "flutterApplicationIdSuffix": "",
+    "accessToken": "accessToken",
+    "apiDomain": "api.github.com"
+}

@@ -1,0 +1,7 @@
+{
+    "flavor": "staging",
+    "flutterAppName": "(Stg)App",
+    "flutterApplicationIdSuffix": ".staging",
+    "accessToken": "(Stg)accessToken",
+    "apiDomain": "(Stg)api.github.com"
+}

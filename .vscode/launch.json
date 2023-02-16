@@ -1,0 +1,56 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    // launch.json作成時のテンプレート - START
+    // "configurations": [
+    //     {
+    //         "name": "flutter_github_search",
+    //         "request": "launch",
+    //         "type": "dart"
+    //     },
+    //     {
+    //         "name": "flutter_github_search (profile mode)",
+    //         "request": "launch",
+    //         "type": "dart",
+    //         "flutterMode": "profile"
+    //     },
+    //     {
+    //         "name": "flutter_github_search (release mode)",
+    //         "request": "launch",
+    //         "type": "dart",
+    //         "flutterMode": "release"
+    //     }
+    // ]
+    // launch.json作成時のテンプレート - END
+    "configurations": [
+        {
+            "name": "Debug dev",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define-from-file=dart_define/development.json"
+            ]
+        },
+        {
+            "name": "Debug stg",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define-from-file=dart_define/staging.json"
+            ]
+        },
+        {
+            "name": "Debug prod",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define-from-file=dart_define/production.json"
+            ]
+        }
+    ]
+}

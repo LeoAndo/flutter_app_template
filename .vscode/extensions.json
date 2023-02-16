@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "Dart-Code.flutter", // Flutter support and debugger for Visual Studio Code.
+        "Dart-Code.dart-code", // Dart
+        "robert-brunhage.flutter-riverpod-snippets", // riverpod
+        // "alexisvt.flutter-snippets", // flutter widget snippets
+    ]
+}
