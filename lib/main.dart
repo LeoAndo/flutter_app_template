@@ -1,10 +1,14 @@
-import 'package:dynamic_color/dynamic_color.dart';
-import 'package:flutter/foundation.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:dynamic_color/dynamic_color.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// Project imports:
 import './ui/home/home_screen.dart';
 import './ui/theme/color_schemes.dart';
 import './ui/theme/custom_colors.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
