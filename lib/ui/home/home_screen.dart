@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:logger/logger.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -23,11 +24,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    _initPackageInfo();
+    Logger().d('===============env variable info===============');
     Logger().d(const String.fromEnvironment('flavor'));
     Logger().d(const String.fromEnvironment('flutterAppName'));
     Logger().d(const String.fromEnvironment('flutterApplicationIdSuffix'));
     Logger().d(const String.fromEnvironment('accessToken'));
     Logger().d(const String.fromEnvironment('apiDomain'));
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    Logger().d('===============package info===============');
+    Logger().d(info.packageName);
+    Logger().d(info.version);
+    Logger().d(info.buildNumber);
+    Logger().d(info.buildSignature);
+    Logger().d(info.installerStore ?? 'not available');
   }
 
   @override
