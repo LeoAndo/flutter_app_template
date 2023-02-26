@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   # Check static dart formatting
-  format:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -46,7 +46,28 @@ jobs:
       - name: Run flutter test
         run: flutter test
 
-      # Check flutter static analysis
+  # Check flutter static analysis
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: '3.7.3'
+          cache: true
+
+      - name: Run flutter pub get
+        run: flutter pub get
+        
+      - name: Run flutter pub run build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Install matcher
         run: echo "::add-matcher::.github/analyzer-problem-matcher.json"
 
