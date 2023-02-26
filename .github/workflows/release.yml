@@ -40,10 +40,17 @@ jobs:
           echo "ANDROID_KEY_ALIAS=$ANDROID_KEY_ALIAS" >> android/key.properties
           echo "ANDROID_KEY_PASSWORD=$ANDROID_KEY_PASSWORD" >> android/key.properties
 
+      - name: Create production.json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "production.json"
+          json: ${{ secrets.PRODUCTIONJSON }}
+        
       - name: Release Build tasks (apk and aab)
         run: |
-          flutter build apk --release --dart-define-from-file=dart_define/production.json
-          flutter build appbundle --release --dart-define-from-file=dart_define/production.json
+          flutter build apk --release --dart-define-from-file=production.json
+          flutter build appbundle --release --dart-define-from-file=production.json
     
       # https://github.com/softprops/action-gh-release#%EF%B8%8F-uploading-release-assets
       - name: Release
