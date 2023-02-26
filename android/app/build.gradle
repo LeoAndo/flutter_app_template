@@ -21,6 +21,12 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+   keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -62,9 +68,9 @@ android {
         debug { storeFile rootProject.file('debug.keystore') }
         release {
             storeFile rootProject.file('release.keystore')
-            storePassword localProperties.getProperty('ANDROID_STORE_PASSWORD')
-            keyAlias localProperties.getProperty('ANDROID_KEY_ALIAS')
-            keyPassword localProperties.getProperty('ANDROID_KEY_PASSWORD')
+            storePassword keystoreProperties['ANDROID_STORE_PASSWORD']
+            keyAlias keystoreProperties['ANDROID_KEY_ALIAS']
+            keyPassword keystoreProperties['ANDROID_KEY_PASSWORD']
         }
     }
     buildTypes {
