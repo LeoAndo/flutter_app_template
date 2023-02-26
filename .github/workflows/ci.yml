@@ -11,7 +11,6 @@ permissions:
   pull-requests: write
 
 jobs:
-  # Check static dart formatting
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -35,41 +34,26 @@ jobs:
       - name: Run flutter pub run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
       
-      # Check static dart formatting
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
       
-      # Check import_sorter
       - name: Run import_sorter
         run: flutter pub run import_sorter:main --exit-if-changed
       
-      # Check flutter test
       - name: Run flutter test
         run: flutter test
 
-  # Check flutter static analysis
-  analyze:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Debug Build tasks (apk)
+        run: |
+          flutter build apk --debug --dart-define-from-file=dart_define/development.json
+          
+      - name: Upload build outputs (APKs)
+        uses: actions/upload-artifact@v3
         with:
-          fetch-depth: 0
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.7.3'
-          channel: 'stable'
-          cache: true
-
-      - name: Run flutter pub get
-        run: flutter pub get
+          name: build-outputs
+          path: build/app/outputs/flutter-apk
         
-      - name: Run flutter pub run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
+      # Check flutter static analysis (Danger)
       - name: Install matcher
         run: echo "::add-matcher::.github/analyzer-problem-matcher.json"
 
