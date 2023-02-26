@@ -2,12 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [ "main", "develop", /^release\-.*$/ ]
-    paths-ignore:
-      - '**.md'
   pull_request:
-    paths-ignore:
-      - '**.md'
   workflow_dispatch:
 
 permissions:

@@ -47,18 +47,18 @@ build-android-prod:
 
 .PHONY: build-android-bundle
 build-android-bundle:
-	flutter build appbundle --release --dart-define-from-file=dart_define/production.json
+	fvm flutter build appbundle --release --dart-define-from-file=dart_define/production.json
 
 # https://docs.flutter.dev/deployment/ios
 .PHONY: build-ios
 build-ios:
-	flutter build ios --release --dart-define-from-file=dart_define/production.json
+	fvm flutter build ios --release --dart-define-from-file=dart_define/production.json
 
 .PHONY: build-ipa
 build-ipa:
-	flutter build ipa --release --dart-define-from-file=dart_define/production.json
+	fvm flutter build ipa --release --dart-define-from-file=dart_define/production.json
 
 # https://docs.flutter.dev/deployment/macos
 .PHONY: build-macos
-build-ipa:
-	flutter build macos --release --dart-define-from-file=dart_define/production.json
+build-macos:
+	fvm flutter build macos --release --dart-define-from-file=dart_define/production.json

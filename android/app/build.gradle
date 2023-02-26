@@ -21,6 +21,21 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+// Android 署名設定 - START
+def flutterAndroidKeyAlias = localProperties.getProperty('flutter.androidKeyAlias')
+if (flutterAndroidKeyAlias == null) {
+    flutterAndroidKeyAlias = 'xxx'
+}
+def flutterAndroidKeyPassword = localProperties.getProperty('flutter.androidKeyPassword')
+if (flutterAndroidKeyPassword == null) {
+    flutterAndroidKeyPassword = 'xxx'
+}
+def flutterAndroidStorePassword = localProperties.getProperty('flutter.androidStorePassword')
+if (flutterAndroidStorePassword == null) {
+    flutterAndroidStorePassword = 'xxx'
+}
+// Android 署名設定 - END
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
@@ -57,14 +72,21 @@ android {
         // string/app_nameを作成し、{環境}.json で定義した flutterAppName を指定
         resValue "string", "app_name", flutterAppName
     }
-
-    buildTypes {
+    // Android 署名設定 - START
+    signingConfigs {
+        debug { storeFile rootProject.file('debug.keystore') }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            storeFile rootProject.file('release.keystore')
+            storePassword flutterAndroidStorePassword
+            keyAlias flutterAndroidKeyAlias
+            keyPassword flutterAndroidKeyPassword
         }
     }
+    buildTypes {
+        debug { signingConfig signingConfigs.debug }
+        release { signingConfig signingConfigs.release }
+    }
+    // Android 署名設定 - END
 }
 
 flutter {
