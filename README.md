@@ -1,6 +1,6 @@
 # 概要
 個人アプリ開発のためのミニマムなテンプレート<br>
-<strong>本プロジェクトは android / ios / macosのみ動作サポートしています。</strong><br>
+<strong>本プロジェクトは android / ios / macosのみ動作サポートしています</strong><br>
 
 # 開発環境
 - IDE: Visual Studio Code バージョン: 1.75.1 (Universal)

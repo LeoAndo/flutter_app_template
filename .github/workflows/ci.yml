@@ -1,13 +1,8 @@
-name: ci
+name: Flutter ci
 
 on:
   push:
-    branches: [ "main", "develop", /^release\-.*$/ ]
-    paths-ignore:
-      - '**.md'
   pull_request:
-    paths-ignore:
-      - '**.md'
   workflow_dispatch:
 
 permissions:
@@ -16,8 +11,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  # Check static dart formatting
-  format:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -27,6 +21,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.7.3'
           channel: 'stable'
           cache: true
       
@@ -38,63 +33,27 @@ jobs:
         
       - name: Run flutter pub run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
-        
+      
       - name: Verify formatting
         run: dart format --output=none --set-exit-if-changed .
-
-
-  # Check import_sorter
-  import_sorter:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
       
-      - name: Run flutter version
-        run: flutter --version
-
-      - name: Run flutter pub get
-        run: flutter pub get
-        
-      - name: Run flutter pub run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-        
       - name: Run import_sorter
         run: flutter pub run import_sorter:main --exit-if-changed
+      
+      - name: Run flutter test
+        run: flutter test
 
-
-  # Check flutter static analysis
-  analyze:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Debug Build tasks (apk)
+        run: |
+          flutter build apk --debug --dart-define-from-file=dart_define/development.json
+          
+      - name: Upload build outputs (APKs)
+        uses: actions/upload-artifact@v3
         with:
-          fetch-depth: 0
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-
-      - name: Run flutter version
-        run: flutter --version
-
-      - name: Run flutter pub get
-        run: flutter pub get
+          name: build-outputs
+          path: build/app/outputs/flutter-apk
         
-      - name: Run flutter pub run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
+      # Check flutter static analysis (Danger)
       - name: Install matcher
         run: echo "::add-matcher::.github/analyzer-problem-matcher.json"
 
@@ -123,30 +82,3 @@ jobs:
           danger_id: 'danger-pr'
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-  # Check flutter test
-  test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-          cache: true
-
-      - name: Run flutter version
-        run: flutter --version
-
-      - name: Run flutter pub get
-        run: flutter pub get
-        
-      - name: Run flutter pub run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
-
-      - name: Run flutter test
-        run: flutter test
