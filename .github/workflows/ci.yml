@@ -43,9 +43,16 @@ jobs:
       - name: Run flutter test
         run: flutter test
 
+      - name: Create production.json
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "development.json"
+          json: ${{ secrets.DEVELOPMENTJSON }}
+        
       - name: Debug Build tasks (apk)
         run: |
-          flutter build apk --debug --dart-define-from-file=dart_define/development.json
+          flutter build apk --debug --dart-define-from-file=development.json
           
       - name: Upload build outputs (APKs)
         uses: actions/upload-artifact@v3
