@@ -75,11 +75,7 @@ android {
     }
     buildTypes {
         debug { signingConfig signingConfigs.debug }
-        release {
-            minifyEnabled false
-            shrinkResources false
-            signingConfig signingConfigs.release 
-        }
+        release { signingConfig signingConfigs.release }
     }
     // Android 署名設定 - END
 }
