@@ -42,16 +42,6 @@ jobs:
       
       - name: Run flutter test
         run: flutter test
-
-      - name: Debug Build tasks (apk)
-        run: |
-          flutter build apk --debug --dart-define-from-file=dart_define/development.json
-          
-      - name: Upload build outputs (APKs)
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-outputs
-          path: build/app/outputs/flutter-apk
         
       # Check flutter static analysis (Danger)
       - name: Install matcher
