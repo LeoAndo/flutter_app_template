@@ -39,7 +39,7 @@ jobs:
       
       - name: Run flutter test
         run: flutter test
-        
+
       - name: Debug Build tasks (apk)
         run: |
           flutter build apk --debug --dart-define-from-file=dart_define/development.json
