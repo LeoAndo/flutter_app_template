@@ -3,7 +3,7 @@
 <strong>本プロジェクトは android / ios / macosのみ動作サポートしています</strong><br>
 
 # 開発環境
-- IDE: Visual Studio Code バージョン: 1.75.1 (Universal)
+- IDE: Visual Studio Code バージョン: 1.78.2 (Universal)
 
 # 本リポジトリの使い方
 [Wiki](https://github.com/LeoAndo/flutter_app_template/wiki)にまとめていますので、ご確認ください。<br>
