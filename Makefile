@@ -7,12 +7,6 @@ SHELL=/bin/bash
 clean:
 	fvm flutter clean
 	fvm flutter pub get
-	fvm flutter pub run build_runner build --delete-conflicting-outputs
-
-# freezed関連のファイルを修正したら、以下の自動生成コマンドを実行してください
-.PHONY: run-gen
-run-gen:
-	fvm flutter pub run build_runner build --delete-conflicting-outputs
 
 # format + 静的解析の実行結果を確認する
 .PHONY: check 
